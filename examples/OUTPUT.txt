@@ -1,0 +1,8 @@
+0 true remaining 4 retryAfterMs 0
+1 true remaining 3 retryAfterMs 0
+2 true remaining 2 retryAfterMs 0
+3 true remaining 1 retryAfterMs 0
+4 true remaining 0 retryAfterMs 0
+5 false remaining 0 retryAfterMs 200
+6 false remaining 0 retryAfterMs 200
+t=200 true
