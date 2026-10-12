@@ -1,28 +1,29 @@
-# Pengembangan LombokRateLimit
+# Development LombokRateLimit
 
 ## 1. Roadmap
 
 - 0.1.1: CI, coverage, fuzz, publish
-- 0.2.0: port Rust (no_std), Go, PHP; benchmark
-- 0.3.0: sliding-window dan token-bucket eksplisit sebagai algoritma tambahan
+- 0.2.0: Rust (no_std), Go, PHP ports; benchmark
+- 0.3.0: explicit sliding-window and token-bucket algorithms
 
 ## 2. Deferred scope
 
-Pembatas terdistribusi, penyimpanan di luar memori, dan jam monotonic adalah tanggung jawab pemanggil.
+Distributed limiting, storage outside memory, and a monotonic clock are the caller's responsibility.
 
-## 3. Prinsip desain untuk kontributor
+## 3. Design principles for contributors
 
-- Kontrak dulu: ubah SPEC dan vector sebelum kode; perbedaan antar-port adalah bug.
-- Tanpa dependensi runtime; tanpa jam, tanpa jaringan, tanpa acak tersembunyi.
-- Setiap fitur README memiliki kasus vector atau test.
-- Tidak ada nama klien atau aplikasi pemilik di berkas publik.
-- Tanpa emoji di `*.md`.
+- Contract first: change the SPEC and vectors before the code; differences between ports are bugs.
+- No runtime dependencies; no clock, no network, no hidden randomness.
+- Every README feature has a vector case or a test.
+- No client or owning-application names in public files.
+- No emoji in `*.md`.
+- Documentation, comments, error messages and examples are written in English (the default language of all Lombok Ecosystem repositories).
 
-## 4. Cara berkontribusi
+## 4. How to contribute
 
-Fork, cabang `feat/...`, jalankan kedua runner vector, perbarui `API_` dan `SPEC_` bila perilaku berubah, buka PR. Bangkitkan ulang vector dengan `node scripts/gen_vectors.ts` hanya bila kontrak berubah, dan tinjau diff vector.
+Fork, create a `feat/...` branch, run both vector runners, update `API_` and `SPEC_` if behavior changes, and open a PR. Regenerate vectors with `node scripts/gen_vectors.ts` only when the contract changes, and review the vector diff.
 
-## 5. Pertanyaan terbuka
+## 5. Open questions
 
-- Perlu varian aman-thread di Rust?
-- Perlu antarmuka untuk menyimpan keadaan (snapshot) ke penyimpanan luar?
+- Is a thread-safe variant needed in Rust?
+- Is an interface for saving state (snapshots) to external storage needed?

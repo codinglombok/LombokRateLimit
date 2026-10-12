@@ -1,6 +1,6 @@
 import { KeyedLimiter } from "../typescript/src/index.ts";
 
-// 5 permintaan per detik per klien, lonjakan 5
+// 5 requests per second per client, burst of 5
 const rl = new KeyedLimiter({ limit: 5, periodMs: 1000, burst: 5 });
 for (let i = 0; i < 7; i++) {
   const d = rl.check("client-a", 0);

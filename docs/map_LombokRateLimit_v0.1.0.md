@@ -1,21 +1,21 @@
 # Map LombokRateLimit v0.1.0
 
-## 1. Posisi dependensi
+## 1. Dependency position
 
-Tingkat L0; tanpa dependensi Lombok wajib.
+Level L0; no required Lombok dependencies.
 
-## 2. Contoh dependen di ekosistem
+## 2. Example dependents in the ecosystem
 
-LombokDNSProxy (aplikasi) dapat memakai library ini menggantikan modul internalnya; status integrasi: rencana.
+LombokDNSProxy (an application) may use this library in place of its internal module; integration status: planned.
 
-## 3. Bergantung pada
+## 3. Depends on
 
-Tidak ada.
+Nothing.
 
-## 4. Jalur kontrak normatif
+## 4. Normative contract path
 
-`docs/SPEC_LombokRateLimit_v0.1.0.md` dan `vectors/lombokratelimit-vectors-v1.json`.
+`docs/SPEC_LombokRateLimit_v0.1.0.md` and `vectors/lombokratelimit-vectors-v1.json`.
 
-## 5. Peta folder
+## 5. Folder map
 
-`typescript/`, `python/`, `vectors/`, `scripts/`, `docs/`.
+`typescript/`, `python/`, `vectors/`, `scripts/`, `examples/`, `docs/`.

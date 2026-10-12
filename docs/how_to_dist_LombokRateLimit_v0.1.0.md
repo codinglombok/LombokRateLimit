@@ -1,8 +1,8 @@
-# Distribusi LombokRateLimit
+# Distribution LombokRateLimit
 
-Semua perintah PowerShell. Kebijakan: rilis hanya lewat tag dan workflow bersama (ADR-011, ADR-020); jangan publish manual dari folder lokal.
+All commands are PowerShell. Policy: releases happen only through tags and the shared workflow (ADR-011, ADR-020); never publish manually from a local folder.
 
-## 1. Upload pertama (bootstrap)
+## 1. First upload (bootstrap)
 
 ```powershell
 $Org='codinglombok'; $Repo='LombokRateLimit'
@@ -12,32 +12,32 @@ gh repo edit "$Org/$Repo" --add-topic lombok-ecosystem --add-topic level-l0
 git add -A ; git commit -m "feat: $Repo v0.1.0" ; git push -u origin main
 ```
 
-Repo online adalah sumber rilis. Pastikan `git ls-files` tidak memuat `docs/*architecture*` dan `docs/*masterplan*`.
+The online repository is the release source. Make sure `git ls-files` does not list `docs/*architecture*` or `docs/*masterplan*`.
 
-## 2. Alur rilis reguler
+## 2. Regular release flow
 
-feat/fix commit ke main, PR release-please, merge, tag `v<semver>`, workflow rilis membaca versi dari tag. Prasyarat: TD-P0-08 (repo `codinglombok/.github` dengan workflow reusable) selesai.
+Commit feat/fix to main, open a release-please PR, merge it, tag `v<semver>`, and the release workflow reads the version from the tag. Prerequisite: ecosystem TD-P0-08 (the `codinglombok/.github` repository with reusable workflows) is done.
 
-## 3. Publish per registry
+## 3. Publishing per registry
 
-| Registry | Nama | Manifest | Pemeriksaan sebelum rilis |
+| Registry | Name | Manifest | Check before release |
 |---|---|---|---|
 | npm | `lombokratelimit` | `typescript/package.json` | `npm pack --dry-run` |
-| PyPI | `lombokratelimit` | `python/pyproject.toml` | `python -m build` lalu `twine check dist/*` |
+| PyPI | `lombokratelimit` | `python/pyproject.toml` | `python -m build` then `twine check dist/*` |
 
-Rust, Go, PHP: belum ada port.
+Rust, Go, PHP: no ports yet.
 
 ## 4. Server/VPS, Docker, shared hosting
 
-Tidak berlaku: library tanpa proses layanan.
+Not applicable: a library without a service process.
 
-## 5. Lokal
+## 5. Local
 
 ```powershell
 node --test typescript/test/vectors.test.ts
 python -m pytest python/tests
 ```
 
-## 6. Verifikasi
+## 6. Verification
 
-`lombok doctor docs` (belum tersedia, TD-P0-08). Sementara: jalankan kedua runner vector dan periksa hash vector di SPEC bagian 1.
+`lombok doctor docs` (not available yet, TD-P0-08). Meanwhile: run both vector runners and check the vector hash in SPEC section 1.

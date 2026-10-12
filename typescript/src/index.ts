@@ -1,18 +1,18 @@
 export interface GcraConfig {
-  /** peristiwa yang diizinkan per periode (bilangan bulat 1..1_000_000) */
+  /** events allowed per period (integer 1..1_000_000) */
   limit: number;
-  /** panjang periode dalam milidetik (bilangan bulat >= 1) */
+  /** period length in milliseconds (integer >= 1) */
   periodMs: number;
-  /** kapasitas lonjakan dalam peristiwa (bilangan bulat >= 1) */
+  /** burst capacity in events (integer >= 1) */
   burst: number;
 }
 export interface Decision {
   allowed: boolean;
-  /** sisa peristiwa yang dapat langsung diterima setelah keputusan ini */
+  /** events that can still be accepted immediately after this decision */
   remaining: number;
-  /** ms sampai permintaan sebesar `cost` diterima; 0 bila diizinkan; -1 bila cost > burst */
+  /** ms until a request of size `cost` is accepted; 0 if allowed; -1 if cost > burst */
   retryAfterMs: number;
-  /** ms sampai kapasitas penuh kembali */
+  /** ms until full capacity is restored */
   resetAfterMs: number;
 }
 
@@ -29,11 +29,11 @@ function checkConfig(c: GcraConfig): void {
 }
 
 /**
- * Generic Cell Rate Algorithm. Waktu dilewatkan eksplisit (ms bilangan bulat, tidak turun);
- * syarat: nowMs * limit < 2^53. Seluruh aritmetika bilangan bulat, identik lintas bahasa.
+ * Generic Cell Rate Algorithm. Time is passed in explicitly (integer ms, non-decreasing);
+ * requirement: nowMs * limit < 2^53. All arithmetic is integer, identical across languages.
  */
 export class Gcra {
-  private tat = 0; // dalam satuan ms * limit
+  private tat = 0; // in units of ms * limit
   private readonly cfg: GcraConfig;
   constructor(cfg: GcraConfig) {
     checkConfig(cfg);
@@ -56,7 +56,7 @@ export class Gcra {
     return { allowed, remaining, retryAfterMs: wait, resetAfterMs: divCeil(cur, limit) };
   }
 
-  /** true bila kapasitas penuh pada waktu now (aman dibuang dari tabel kunci) */
+  /** true when capacity is full at time now (safe to drop from a key table) */
   isIdle(nowMs: number): boolean {
     return this.tat <= nowMs * this.cfg.limit;
   }
@@ -64,7 +64,7 @@ export class Gcra {
 
 export type Overflow = "deny" | "allow";
 
-/** Pembatas per kunci dengan batas jumlah kunci; kunci idle dibuang oleh sweep(). */
+/** Per-key limiter with a cap on the number of keys; idle keys are dropped by sweep(). */
 export class KeyedLimiter {
   private map = new Map<string, Gcra>();
   private readonly cfg: GcraConfig;
@@ -96,7 +96,7 @@ export class KeyedLimiter {
     return g.check(nowMs, cost);
   }
 
-  /** buang kunci idle; kembalikan jumlah yang dibuang */
+  /** drop idle keys; returns how many were removed */
   sweep(nowMs: number): number {
     let n = 0;
     for (const [k, g] of [...this.map]) {

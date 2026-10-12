@@ -1,21 +1,21 @@
 # Lang LombokRateLimit
 
-## 1. Tingkat i18n
+## 1. i18n level
 
-Tingkat E (pesan error dan dokumentasi saja). Library tidak menampilkan teks ke pengguna akhir.
+Level E (error messages and documentation only). The library does not display text to end users.
 
-## 2. Katalog ID pesan
+## 2. Message ID catalog
 
-Belum ada katalog `locales/`. Galat memakai jenis standar bahasa (RangeError/ValueError) dengan nama argumen sebagai pesan teknis berbahasa Inggris. ID pesan kanonik direncanakan di 0.2.0 bila LombokLocale menjadi dependensi opsional.
+There is no `locales/` catalog yet. Errors use the language's standard error types (RangeError/ValueError) with the argument name as an English technical message. Canonical message IDs are planned for 0.2.0 if LombokLocale becomes an optional dependency.
 
-## 3. Cakupan Core-20 dan Nusantara
+## 3. Core-20 and Nusantara coverage
 
-Cakupan saat ini: 0 dari 20 (tidak ada pesan untuk diterjemahkan). Dokumentasi: Indonesia.
+Current coverage: 0 of 20 (there are no user-facing messages to translate). Documentation language: English (default for all Lombok Ecosystem repositories).
 
-## 4. Cara menambah bahasa
+## 4. How to add a language
 
-Setelah katalog ada: tambahkan `locales/<bcp47>/lombokratelimit.json` dan perbarui tabel cakupan.
+Once a catalog exists: add `locales/<bcp47>/lombokratelimit.json` and update the coverage table.
 
-## 5. Ketergantungan LombokLocale
+## 5. LombokLocale dependency
 
-Tidak ada (opsional di masa depan).
+None (optional in the future).

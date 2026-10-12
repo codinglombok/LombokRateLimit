@@ -1,43 +1,43 @@
-# Ringkasan Proyek LombokRateLimit
+# Project Summary LombokRateLimit
 
-## Apa ini
+## What it is
 
 Deterministic rate limiting with the Generic Cell Rate Algorithm: per-key limiter, burst, variable cost, and retry-after hints; time is passed in explicitly. Part of the Lombok Ecosystem.
 
-## Mengapa dibuat
+## Why it exists
 
-Pembatas laju yang bergantung pada jam sistem sulit diuji dan berbeda perilaku antar bahasa. Library ini menerima waktu sebagai masukan dan memakai aritmetika bilangan bulat murni, sehingga keputusan identik di setiap bahasa dan dapat diuji tanpa menunggu.
+A rate limiter that depends on the system clock is hard to test and behaves differently across languages. This library takes time as an input and uses pure integer arithmetic, so decisions are identical in every language and testable without waiting.
 
-## Fitur utama
+## Main features
 
-- GCRA dengan lonjakan (burst) dan biaya per permintaan
-- Keluaran lengkap: diizinkan, sisa, retryAfterMs, resetAfterMs
-- Pembatas per kunci dengan batas jumlah kunci dan pembersihan kunci idle
-- Kebijakan saat tabel penuh: deny atau allow
-- Tanpa jam, tanpa alokasi tersembunyi di jalur keputusan
+- GCRA with burst and per-request cost
+- Complete output: allowed, remaining, retryAfterMs, resetAfterMs
+- Per-key limiter with a key cap and idle-key sweeping
+- Overflow policy when the table is full: deny or allow
+- No clock and no hidden allocation on the decision path
 
-## Status saat ini
+## Current status
 
-Versi 0.1.0, belum dirilis. TypeScript dan Python lulus 2239 kasus vector. Port lain belum ada.
+Version 0.1.0, not yet released. TypeScript and Python pass 2239 vector cases. No other ports exist.
 
-## Contoh pemakai
+## Example use cases
 
-- Pembatas permintaan API per klien atau per token
-- Pembatas percobaan login, pengiriman email, atau unggahan
-- Pembatas paket per sumber pada server UDP/DNS
-- Pengatur laju pembacaan sensor atau perintah pada firmware
+- API request limiting per client or token
+- Limiting login attempts, email sending, or uploads
+- Per-source packet limiting on a UDP or DNS server
+- Rate control for sensor reads or commands in firmware
 
-## Batasan yang Diketahui
+## Known Limitations
 
-- Batas nowMs*limit < 2^53 (gunakan ms sejak awal proses).
-- Tidak aman antar-thread; pemanggil menyerialisasi akses.
-- Satu algoritma (GCRA); sliding-window dan token-bucket eksplisit BELUM.
-- Port Rust, Go, PHP BELUM.
+- nowMs*limit < 2^53 (use milliseconds since process start).
+- Not thread-safe; callers serialize access.
+- One algorithm (GCRA); explicit sliding-window and token-bucket: NOT YET.
+- Rust, Go and PHP ports: NOT YET.
 
-## Info lanjut
+## Further information
 
-SPEC: `SPEC_LombokRateLimit_v0.1.0.md`; API: `API_LombokRateLimit_v0.1.0.md`; panduan: `guide_how_to_use_LombokRateLimit_v0.1.0.md`.
+SPEC: `SPEC_LombokRateLimit_v0.1.0.md`; API: `API_LombokRateLimit_v0.1.0.md`; guide: `guide_how_to_use_LombokRateLimit_v0.1.0.md`.
 
-## Gap vs pembanding
+## Gap versus comparable libraries
 
-Pembanding: governor (Rust), limiter pada ekosistem Go, rate-limiter-flexible (Node). Gap jujur: tidak ada backend bersama (Redis) dan belum ada benchmark; keunggulan: determinisme dan hasil identik lintas bahasa.
+Comparable: governor (Rust), limiters in the Go ecosystem, rate-limiter-flexible (Node). Honest gap: no shared backend (such as Redis) and no benchmark yet; strength: determinism and identical results across languages.

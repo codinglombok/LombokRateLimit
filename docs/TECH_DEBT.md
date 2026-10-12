@@ -1,11 +1,11 @@
 # Tech Debt LombokRateLimit
 
-| ID | Prioritas | Temuan | Perbaikan |
+| ID | Priority | Finding | Fix |
 |---|---|---|---|
-| TD-01 | P0 | CI GitHub belum pernah dijalankan; action belum di-pin SHA | Pasang caller ke lombok-ci.yml |
-| TD-02 | P0 | `lombok doctor docs/privacy/style` belum ada | Jalankan setelah tersedia (TD-P0-08 ekosistem) |
-| TD-03 | P1 | Port Rust, Go, PHP belum ada; Rust adalah referensi no_std | Tambah port dan runner vector |
-| TD-04 | P1 | Coverage dan fuzz belum diukur | Tambah job coverage dan fuzz |
-| TD-05 | P2 | 12 dokumen standar sudah ada tetapi dirender dari generator lokal, bukan templat pusat (`codinglombok/.github` belum ada) | Pindahkan ke render_docs.py pusat dan tinjau isi |
-| TD-06 | P2 | Vector dibangkitkan dari referensi TypeScript; ekspektasi tidak independen | Tinjauan manual sampel vector |
-| TD-07 | P2 | npm pack, twine check, tsc build belum dijalankan | Jalankan di CI |
+| TD-01 | P0 | GitHub CI has never run; actions are not pinned to a SHA | Add a caller for lombok-ci.yml |
+| TD-02 | P0 | `lombok doctor docs/privacy/style` does not exist yet | Run it once available (ecosystem TD-P0-08) |
+| TD-03 | P1 | Rust, Go and PHP ports do not exist; Rust is the no_std reference | Add the ports and vector runners |
+| TD-04 | P1 | Coverage and fuzzing are not measured | Add coverage and fuzz jobs |
+| TD-05 | P2 | The 12 standard documents come from a local generator, not the central templates (`codinglombok/.github` does not exist yet) | Move to the central render_docs.py and review the content |
+| TD-06 | P2 | Vectors are generated from the TypeScript reference; expected values are not independent | Manually review a sample of vectors |
+| TD-07 | P2 | npm pack, twine check and the tsc build have not been run | Run them in CI |

@@ -4,16 +4,16 @@ import { Gcra, KeyedLimiter, type GcraConfig } from "../typescript/src/index.ts"
 type Op = { t: number; cost?: number };
 const seqs: { cfg: GcraConfig; ops: Op[] }[] = [];
 const ramp = (n: number, step: number, start = 0): Op[] => Array.from({ length: n }, (_, i) => ({ t: start + i * step }));
-// 1000/s burst 1000 (batas klien umum)
+// 1000/s with burst 1000 (typical per-client limit)
 seqs.push({ cfg: { limit: 1000, periodMs: 1000, burst: 1000 }, ops: ramp(1100, 0) });
 seqs.push({ cfg: { limit: 1000, periodMs: 1000, burst: 1000 }, ops: [...ramp(1000, 0), { t: 1 }, { t: 1 }, { t: 2 }, { t: 1000 }, { t: 2000 }] });
-// 1 per detik, burst 1
+// 1 per second, burst 1
 seqs.push({ cfg: { limit: 1, periodMs: 1000, burst: 1 }, ops: [0, 0, 500, 999, 1000, 1001, 1999, 2000, 5000, 5000].map((t) => ({ t })) });
-// 5 per 10 detik, burst 3
+// 5 per 10 seconds, burst 3
 seqs.push({ cfg: { limit: 5, periodMs: 10000, burst: 3 }, ops: ramp(12, 100).concat(ramp(6, 2000, 3000)) });
 // biaya variabel
 seqs.push({ cfg: { limit: 10, periodMs: 1000, burst: 10 }, ops: [{ t: 0, cost: 4 }, { t: 0, cost: 4 }, { t: 0, cost: 4 }, { t: 0, cost: 2 }, { t: 0, cost: 11 }, { t: 0, cost: 0 }, { t: 700, cost: 7 }, { t: 700, cost: 1 }, { t: 5000, cost: 10 }, { t: 5000, cost: 1 }] });
-// laju tidak membagi rata: 3 per 1000 ms
+// rate that does not divide evenly: 3 per 1000 ms
 seqs.push({ cfg: { limit: 3, periodMs: 1000, burst: 2 }, ops: ramp(20, 150) });
 seqs.push({ cfg: { limit: 7, periodMs: 100, burst: 1 }, ops: ramp(25, 7) });
 seqs.push({ cfg: { limit: 1_000_000, periodMs: 1000, burst: 5 }, ops: [{ t: 0 }, { t: 0 }, { t: 0 }, { t: 0 }, { t: 0 }, { t: 0 }, { t: 1 }, { t: 1 }, { t: 1_000_000 }] });
