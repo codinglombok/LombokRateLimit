@@ -8,4 +8,4 @@
 | TD-04 | P1 | Coverage and fuzzing are not measured | Add coverage and fuzz jobs |
 | TD-05 | P2 | The 12 standard documents come from a local generator, not the central templates (`codinglombok/.github` does not exist yet) | Move to the central render_docs.py and review the content |
 | TD-06 | P2 | Vectors are generated from the TypeScript reference; expected values are not independent | Manually review a sample of vectors |
-| TD-07 | P2 | npm pack, twine check and the tsc build have not been run | Run them in CI |
+| TD-07 | P2 | tsc build, npm pack --dry-run, python -m build and twine check pass locally but are not run in CI; README and licenses are copied into python/ and typescript/ by the generator | Run them in CI and build from the repository root |

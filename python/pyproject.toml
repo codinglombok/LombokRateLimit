@@ -7,6 +7,8 @@ name = "lombokratelimit"
 version = "0.1.0"
 description = "Deterministic rate limiting with the Generic Cell Rate Algorithm: per-key limiter, burst, variable cost, and retry-after hints; time is passed in explicitly. Part of the Lombok Ecosystem."
 license = "Apache-2.0 OR MIT"
+readme = "README.md"
+license-files = ["LICENSE-APACHE", "LICENSE-MIT"]
 requires-python = ">=3.10"
 dependencies = []
 
