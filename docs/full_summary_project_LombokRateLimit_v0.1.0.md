@@ -18,7 +18,7 @@ A rate limiter that depends on the system clock is hard to test and behaves diff
 
 ## Current status
 
-Version 0.1.0, not yet released. TypeScript and Python pass 2239 vector cases. No other ports exist.
+Version 0.1.0, not yet released. TypeScript, Python and Go pass 2239 vector cases. No other ports exist.
 
 ## Example use cases
 
@@ -32,7 +32,7 @@ Version 0.1.0, not yet released. TypeScript and Python pass 2239 vector cases. N
 - nowMs*limit < 2^53 (use milliseconds since process start).
 - Not thread-safe; callers serialize access.
 - One algorithm (GCRA); explicit sliding-window and token-bucket: NOT YET.
-- Rust, Go and PHP ports: NOT YET.
+- Rust and PHP ports: NOT YET.
 
 ## Further information
 

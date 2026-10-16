@@ -9,6 +9,7 @@ LombokRateLimit/
   vectors/     lombokratelimit-vectors-v1.json  cross-language contract
   typescript/  package.json  tsconfig*.json  src/index.ts  test/vectors.test.ts
   python/      pyproject.toml  src/lombokratelimit/__init__.py  tests/test_vectors.py
+  go/          go.mod  lombokratelimit.go  vectors_test.go
   scripts/     gen_vectors.ts  generates vectors from the TypeScript reference
   examples/    example.ts  example.py  OUTPUT.txt
 ```
@@ -27,4 +28,4 @@ TypeScript: a single module `src/index.ts` with no runtime dependencies. Python:
 
 ## 5. Notes
 
-The Rust, Go and PHP ports do not exist yet; their folders are created only once a port has a vector runner (GP-11).
+The Rust and PHP ports do not exist yet; their folders are created only once a port has a vector runner (GP-11).

@@ -24,8 +24,9 @@ Commit feat/fix to main, open a release-please PR, merge it, tag `v<semver>`, an
 |---|---|---|---|
 | npm | `lombokratelimit` | `typescript/package.json` | `npm pack --dry-run` |
 | PyPI | `lombokratelimit` | `python/pyproject.toml` | `python -m build` then `twine check dist/*` |
+| Go | `github.com/codinglombok/lombokratelimit/go` | `go/go.mod` | `go vet ./...` and `go test ./...`; release by tag `go/v0.1.0` |
 
-Rust, Go, PHP: no ports yet.
+Rust, PHP: no ports yet.
 
 ## 4. Server/VPS, Docker, shared hosting
 
@@ -36,6 +37,7 @@ Not applicable: a library without a service process.
 ```powershell
 node --test typescript/test/vectors.test.ts
 python -m pytest python/tests
+cd go ; go test ./...
 ```
 
 ## 6. Verification

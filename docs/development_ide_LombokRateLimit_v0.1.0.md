@@ -3,7 +3,7 @@
 ## 1. Roadmap
 
 - 0.1.1: CI, coverage, fuzz, publish
-- 0.2.0: Rust (no_std), Go, PHP ports; benchmark
+- 0.2.0: Rust (no_std), PHP ports; benchmark
 - 0.3.0: explicit sliding-window and token-bucket algorithms
 
 ## 2. Deferred scope

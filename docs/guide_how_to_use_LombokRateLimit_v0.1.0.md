@@ -2,7 +2,7 @@
 
 ## 1. Installation
 
-After release: `npm install lombokratelimit` or `pip install lombokratelimit`. Before release, copy the `typescript/src` folder or `python/src/lombokratelimit` (no dependencies).
+After release: `npm install lombokratelimit` `pip install lombokratelimit`, or `go get github.com/codinglombok/lombokratelimit/go`. Before release, copy the `typescript/src` folder or `python/src/lombokratelimit` (no dependencies).
 
 ## 2. Basic concepts
 
@@ -48,7 +48,7 @@ console.log("t=200", rl.check("client-a", 200).allowed);
 - nowMs*limit < 2^53 (use milliseconds since process start).
 - Not thread-safe; callers serialize access.
 - One algorithm (GCRA); explicit sliding-window and token-bucket: NOT YET.
-- Rust, Go and PHP ports: NOT YET.
+- Rust and PHP ports: NOT YET.
 
 ## 6. See also
 

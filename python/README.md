@@ -28,6 +28,7 @@ Not yet published to any registry (0.1.0 has not been released). After release:
 ```
 npm install lombokratelimit
 pip install lombokratelimit
+go get github.com/codinglombok/lombokratelimit/go
 ```
 
 ## API overview
@@ -43,7 +44,8 @@ Details: `docs/API_LombokRateLimit_v0.1.0.md`.
 |---|---|
 | TypeScript (reference) | YES, passes all 2239 vector cases |
 | Python | YES, passes all 2239 vector cases |
-| Rust, Go, PHP | NOT YET |
+| Go | YES, passes all 2239 vector cases |
+| Rust, PHP | NOT YET |
 
 ## Standards implemented
 
@@ -54,13 +56,14 @@ The normative contract is in `docs/SPEC_LombokRateLimit_v0.1.0.md`; the vectors 
 - nowMs*limit < 2^53 (use milliseconds since process start).
 - Not thread-safe; callers serialize access.
 - One algorithm (GCRA); explicit sliding-window and token-bucket: NOT YET.
-- Rust, Go and PHP ports: NOT YET.
+- Rust and PHP ports: NOT YET.
 
 ## Development
 
 ```
 node --test typescript/test/vectors.test.ts   # TypeScript (Node 22+)
 python -m pytest python/tests                 # Python 3.10+
+(cd go && go test ./...)                      # Go 1.22+
 node scripts/gen_vectors.ts                   # regenerate vectors from the TypeScript reference
 ```
 
